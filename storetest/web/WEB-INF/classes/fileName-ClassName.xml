@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlPattern>
+    <file-pattern>
+        <fileName>Category</fileName>
+        <className>cn.wang.store.entity.Category</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Clothingband</fileName>
+        <className>cn.wang.store.entity.Clothingband</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Color</fileName>
+        <className>cn.wang.store.entity.Color</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Product</fileName>
+        <className>cn.wang.store.entity.Product</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Series</fileName>
+        <className>cn.wang.store.entity.Series</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Size</fileName>
+        <className>cn.wang.store.entity.Size</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>SubClasses</fileName>
+        <className>cn.wang.store.entity.SubClasses</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Theme</fileName>
+        <className>cn.wang.store.entity.Theme</className>
+    </file-pattern>
+</urlPattern>
