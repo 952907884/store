@@ -70,4 +70,17 @@ public class Category {
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId='" + categoryId + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                ", status=" + status +
+                ", createdBy='" + createdBy + '\'' +
+                ", createDate=" + createDate +
+                ", modifyBy='" + modifyBy + '\'' +
+                ", modifyDate=" + modifyDate +
+                '}';
+    }
 }

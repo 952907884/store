@@ -25,8 +25,8 @@
         <className>cn.wang.store.entity.Size</className>
     </file-pattern>
     <file-pattern>
-        <fileName>Subclass</fileName>
-        <className>cn.wang.store.entity.Subclass</className>
+        <fileName>SubClasses</fileName>
+        <className>cn.wang.store.entity.SubClasses</className>
     </file-pattern>
     <file-pattern>
         <fileName>Theme</fileName>

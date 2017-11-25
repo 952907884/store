@@ -22,8 +22,8 @@
     <h3>基础档案</h3>
     <ul>
         <li><a href="#">商品</a></li>
-        <li><a href="#">大类</a></li>
-        <li><a href="#">小类</a></li>
+        <li><a href="/servlet/showProperty?property=Category&pageNum=1" target="main">大类</a></li>
+        <li><a href="/servlet/showProperty?property=SubClasses&pageNum=1" target="main">小类</a></li>
         <li><a href="#">颜色</a></li>
         <li><a href="#">尺码</a></li>
         <li><a href="#">波段</a></li>

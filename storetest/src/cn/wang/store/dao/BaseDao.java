@@ -2,6 +2,7 @@ package cn.wang.store.dao;
 
 
 
+import cn.wang.store.entity.Page;
 import cn.wang.store.util.JdbcUtil;
 
 import java.lang.reflect.Field;
@@ -64,11 +65,11 @@ public class BaseDao {
      * 查询方法
      * @param sql 查询SQL语句
      * @param params 查询参数条件
-     * @param t 查询的实体类
+     * @param T 查询的实体类
      * @return 该类型的列表
      */
-    public <T>List<T> queryList(String sql, Object[] params, T t){
-        Class clazz=t.getClass();
+    public <T>List<T> queryList(String sql,Class<T> T,Object... params){
+        //Class clazz=t.getClass();
         Connection conn=null;
         PreparedStatement ps=null;
         ResultSet rs=null;
@@ -86,17 +87,20 @@ public class BaseDao {
             ResultSetMetaData metaData=rs.getMetaData();//读取该SQL语句返回的列
             int count=metaData.getColumnCount();//得到SQL语句返回的列数
             while(rs.next()){
-                T temp=(T)clazz.newInstance();//动态生成T的对象
+                //T temp=(T)clazz.newInstance();//动态生成T的对象
+                T temp=T.newInstance();//动态生成T的对象
                 for(int i=0;i<count;i++){
                     String fieldName=metaData.getColumnName(i+1);
-                    Field field=clazz.getDeclaredField(fieldName);
-                    Method method=clazz.getMethod(getSetter(fieldName), field.getType());
+                    Field field=T.getDeclaredField(fieldName);
+                    Method method=T.getMethod(getSetter(fieldName), field.getType());
                     method.invoke(temp, rs.getObject(i+1));
                 }
                 list.add(temp);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            JdbcUtil.closeAll(conn, ps, rs);
         }
         return list;
     }
@@ -193,5 +197,42 @@ public class BaseDao {
 
     public String getGetter(String fieldName){
         return "get"+fieldName.substring(0,1).toUpperCase()+fieldName.substring(1);
+    }
+
+    public <T>Page getPage(Integer pageNum, String property, Class<T> clazz){
+        String sql="SELECT * FROM "+property +"  LIMIT "+((pageNum-1)*20)+","+20;
+        Integer totalCount = getTotalCount(property);
+        int totalPage = (int) Math.ceil((double)totalCount/20);
+        List<T> list = new ArrayList<T>();
+        list = (List<T>) queryList(sql, clazz);
+        Page page = new Page();
+        page.setCurrentPage(20);
+        page.setTotalCount(totalCount);
+        page.setTotalPage(totalPage);
+        page.setData(list);
+        return page;
+    }
+
+    /**
+     * 查找总行数
+     * @param property  查找的表名
+     * @return
+     */
+    public int getTotalCount(String property){
+        String sql="SELECT count(*) FROM "+property ;
+        Connection conn=JdbcUtil.getConnection();
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        int result=-1;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            rs=pstmt.executeQuery();
+            if (rs.next()) {
+                result = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

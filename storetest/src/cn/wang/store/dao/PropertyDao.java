@@ -1,5 +1,7 @@
 package cn.wang.store.dao;
 
+import cn.wang.store.entity.Page;
+
 /**
  * Created by 王 on 2017/11/25.
  */
@@ -28,4 +30,14 @@ public interface PropertyDao {
      * @return
      */
     public <T>int modifyProperty(T t);
-}
+
+    /**
+     * 查找属性，返回一个page对象
+     * @param <T>
+     * @return
+     */
+    public <T>Page getPropertyPage(String property,Integer pageNum,Class<T> clazz);
+
+
+
+    }
