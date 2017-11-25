@@ -206,67 +206,71 @@ public class ExcelAction {
                                             String value = CellToString.getStringValueFromCell(xssfRow.getCell(i));
                                             for (Field field : declaredFields) {
                                                 if(valueName.equalsIgnoreCase(field.getName())){
-                                                    String methodName = "set" + valueName.substring(0, 1).toUpperCase() + valueName.substring(1);
-                                                    String typeName = field.getType().getName();
-                                                    Method method=null;
-                                                    try {
-                                                        if("int".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("int");
-                                                            method = beanClass.getMethod(methodName, int.class);
-                                                            method.invoke(newInstance, Integer.parseInt(value));
-                                                        }else if("java.lang.Integer".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("Integer");
-                                                            method = beanClass.getMethod(methodName, Integer.class);
-                                                            method.invoke(newInstance, Integer.valueOf(value));
-                                                        }else if("boolean".equalsIgnoreCase(typeName)){
-                                                            ///System.out.println("boolean");
-                                                            method = beanClass.getMethod(methodName, boolean.class);
-                                                            method.invoke(newInstance, Boolean.parseBoolean(value));
-                                                        }else if("java.lang.Boolean".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("Boolean");
-                                                            method = beanClass.getMethod(methodName, Boolean.class);
-                                                            method.invoke(newInstance, Boolean.valueOf(value));
-                                                        }else if("double".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("double");
-                                                            method = beanClass.getMethod(methodName, double.class);
-                                                            method.invoke(newInstance, Double.parseDouble(value));
-                                                        }else if("java.lang.Double".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("Double");
-                                                            method = beanClass.getMethod(methodName, Double.class);
-                                                            method.invoke(newInstance, Double.valueOf(value));
-                                                        }else if("float".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("float");
-                                                            method = beanClass.getMethod(methodName, float.class);
-                                                            method.invoke(newInstance, Float.parseFloat(value));
-                                                        }else if("java.lang.Float".equalsIgnoreCase(typeName)){
-                                                            //System.out.println("Float");
-                                                            method = beanClass.getMethod(methodName, Float.class);
-                                                            method.invoke(newInstance, Float.valueOf(value));
-                                                        }else{
-                                                            //System.out.println("String");
-                                                            method = beanClass.getMethod(methodName, String.class);
-                                                            if("男".equalsIgnoreCase(value)){
-                                                                value = "M";
-                                                            }else if("女".equalsIgnoreCase(value)){
-                                                                value = "F";
+                                                    if(value==null || "".equals(value)){
+                                                        break;
+                                                    }else {
+                                                        String methodName = "set" + valueName.substring(0, 1).toUpperCase() + valueName.substring(1);
+                                                        String typeName = field.getType().getName();
+                                                        Method method=null;
+                                                        try {
+                                                            if("int".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("int");
+                                                                method = beanClass.getMethod(methodName, int.class);
+                                                                method.invoke(newInstance, Integer.parseInt(value));
+                                                            }else if("java.lang.Integer".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("Integer");
+                                                                method = beanClass.getMethod(methodName, Integer.class);
+                                                                method.invoke(newInstance, Integer.valueOf(value));
+                                                            }else if("boolean".equalsIgnoreCase(typeName)){
+                                                                ///System.out.println("boolean");
+                                                                method = beanClass.getMethod(methodName, boolean.class);
+                                                                method.invoke(newInstance, Boolean.parseBoolean(value));
+                                                            }else if("java.lang.Boolean".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("Boolean");
+                                                                method = beanClass.getMethod(methodName, Boolean.class);
+                                                                method.invoke(newInstance, Boolean.valueOf(value));
+                                                            }else if("double".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("double");
+                                                                method = beanClass.getMethod(methodName, double.class);
+                                                                method.invoke(newInstance, Double.parseDouble(value));
+                                                            }else if("java.lang.Double".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("Double");
+                                                                method = beanClass.getMethod(methodName, Double.class);
+                                                                method.invoke(newInstance, Double.valueOf(value));
+                                                            }else if("float".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("float");
+                                                                method = beanClass.getMethod(methodName, float.class);
+                                                                method.invoke(newInstance, Float.parseFloat(value));
+                                                            }else if("java.lang.Float".equalsIgnoreCase(typeName)){
+                                                                //System.out.println("Float");
+                                                                method = beanClass.getMethod(methodName, Float.class);
+                                                                method.invoke(newInstance, Float.valueOf(value));
+                                                            }else{
+                                                                //System.out.println("String");
+                                                                method = beanClass.getMethod(methodName, String.class);
+                                                                if("男".equalsIgnoreCase(value)){
+                                                                    value = "M";
+                                                                }else if("女".equalsIgnoreCase(value)){
+                                                                    value = "F";
+                                                                }
+                                                                method.invoke(newInstance, value);
                                                             }
-                                                            method.invoke(newInstance, value);
+                                                        } catch (NoSuchMethodException e) {
+                                                            System.out.println(e);
+                                                            return "导入失败";
+                                                        } catch (SecurityException e) {
+                                                            System.out.println(e);
+                                                            return "导入失败";
+                                                        } catch (IllegalArgumentException e) {
+                                                            System.out.println(e);
+                                                            return "导入失败";
+                                                        } catch (InvocationTargetException e) {
+                                                            System.out.println(e);
+                                                            return "导入失败";
                                                         }
-                                                    } catch (NoSuchMethodException e) {
-                                                        System.out.println(e);
-                                                        return "导入失败";
-                                                    } catch (SecurityException e) {
-                                                        System.out.println(e);
-                                                        return "导入失败";
-                                                    } catch (IllegalArgumentException e) {
-                                                        System.out.println(e);
-                                                        return "导入失败";
-                                                    } catch (InvocationTargetException e) {
-                                                        System.out.println(e);
-                                                        return "导入失败";
-                                                    }
 
-                                                    break;
+                                                        break;
+                                                    }
                                                 }
                                             }
                                         }
