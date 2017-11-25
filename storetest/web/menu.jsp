@@ -34,7 +34,7 @@
     </ul>
     <h3>系统设置</h3>
     <ul>
-        <li><a href="/servlet/upload">资料导入</a></li>
+        <li><a href="uploadDatum.jsp" target="main">资料导入</a></li>
     </ul>
 </body>
 </html>
