@@ -105,6 +105,46 @@ public class BaseDao {
         return list;
     }
 
+    public <T>T selectOne(String sql,Class<T> T,Object... params){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        T temp=null;
+        try {
+            conn = JdbcUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            if (params != null) {
+                for (int i = 0 ; i <params.length ; i++) {
+                    pstmt.setObject(i+1,params[i]);
+                }
+            }
+            rs = pstmt.executeQuery();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int count = metaData.getColumnCount();
+            temp = T.newInstance();
+            for (int i = 0 ; i<count ; i++) {
+                String columnName = metaData.getColumnName(i+1);
+                Field field = T.getField(columnName);
+                String methodName = getSetter(field.getName());
+                Method method = T.getMethod(methodName,field.getType());
+                method.invoke(temp, rs.getObject(i + 1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
     /**
      * 根据对象向数据库插入数据
      * @param t

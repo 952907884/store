@@ -22,7 +22,7 @@
         </table>
         <ul>
             <c:forEach begin="1" end="${sessionScope.pages.totalPage}" varStatus="p">
-                <li><a href="/servlet/showProperty?property=${property}&pageNum=${p.index}">${p.index}</a></li>
+                <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=${property}&pageNum=${p.index}">${p.index}</a></li>
             </c:forEach>
         </ul>
     </c:if>

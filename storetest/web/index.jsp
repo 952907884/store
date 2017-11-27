@@ -13,8 +13,8 @@
   <frameset rows="15%,*">
     <frame src="logo.jsp" noresize="noresize">
     <frameset cols="20%,*">
-      <frame src="menu.jsp" noresize="noresize" name="menu">
-      <frame src="main.jsp" noresize="noresize" name="main">
+      <frame src="menu.jsp" name="menu">
+      <frame src="main.jsp" name="main">
     </frameset>
   </frameset>
 </html>
