@@ -32,4 +32,9 @@
         <fileName>Theme</fileName>
         <className>cn.wang.store.entity.Theme</className>
     </file-pattern>
+    <file-pattern>
+        <fileName>Band</fileName>
+        <className>cn.wang.store.entity.Band</className>
+    </file-pattern>
+
 </urlPattern>

@@ -6,28 +6,28 @@ import java.util.Date;
  * Created by 王 on 2017/11/25.
  */
 public class Color {
-    private String colorid;
-    private String colorname;
+    private String colorId;
+    private String colorName;
     private Integer status;
     private String createdBy;
     private Date createDate;
     private String modifyBy;
     private Date modifyDate;
 
-    public String getColorid() {
-        return colorid;
+    public String getColorId() {
+        return colorId;
     }
 
-    public void setColorid(String colorid) {
-        this.colorid = colorid;
+    public void setColorId(String colorId) {
+        this.colorId = colorId;
     }
 
-    public String getColorname() {
-        return colorname;
+    public String getColorName() {
+        return colorName;
     }
 
-    public void setColorname(String colorname) {
-        this.colorname = colorname;
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
     }
 
     public Integer getStatus() {

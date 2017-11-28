@@ -6,8 +6,8 @@ import java.util.Date;
  * Created by 王 on 2017/11/25.
  */
 public class Product {
-    private String productid;
-    private String productname;
+    private String productId;
+    private String productName;
     private String unit;
     private Double tagprice;
     private Double costprice;
@@ -18,27 +18,27 @@ public class Product {
     private String seriesid;
     private Integer year;
     private Integer quarter;
-    private int status;
+    private Integer status;
     private String picpath;
     private String createdBy;
     private Date createdate;
     private String modifyby;
     private Date modifydate;
 
-    public String getProductid() {
-        return productid;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductid(String productid) {
-        this.productid = productid;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public String getProductname() {
-        return productname;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getUnit() {
@@ -121,11 +121,11 @@ public class Product {
         this.quarter = quarter;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

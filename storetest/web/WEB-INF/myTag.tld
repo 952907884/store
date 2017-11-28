@@ -20,5 +20,10 @@
             <rtexprvalue>true</rtexprvalue><!-- 属性值可以接收el表达式 -->
         </attribute>
     </tag>
+    <function>
+        <name>pciPath</name>
+        <function-class>cn.wang.store.util.PicMsg</function-class>
+        <function-signature>java.lang.String picPath(java.lang.String)</function-signature>
+    </function>
 
 </taglib>
