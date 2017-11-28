@@ -31,6 +31,7 @@
         <c:forEach begin="1" end="${sessionScope.pages.totalPage}" varStatus="p">
             <li><a href="${pageContext.request.contextPath}/servlet/product?property=product&pageNum=${p.index}">${p.index}</a></li>
         </c:forEach>
+
     </c:if>
 
 </body>

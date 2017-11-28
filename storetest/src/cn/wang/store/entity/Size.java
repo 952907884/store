@@ -6,28 +6,28 @@ import java.util.Date;
  * Created by 王 on 2017/11/25.
  */
 public class Size {
-    private String sizeid;
-    private String sizename;
+    private String sizeId;
+    private String sizeName;
     private Integer status;
     private String createdBy;
     private Date createDate;
     private String modifyBy;
     private Date modifyDate;
 
-    public String getSizeid() {
-        return sizeid;
+    public String getSizeId() {
+        return sizeId;
     }
 
-    public void setSizeid(String sizeid) {
-        this.sizeid = sizeid;
+    public void setSizeId(String sizeId) {
+        this.sizeId = sizeId;
     }
 
-    public String getSizename() {
-        return sizename;
+    public String getSizeName() {
+        return sizeName;
     }
 
-    public void setSizename(String sizename) {
-        this.sizename = sizename;
+    public void setSizeName(String sizeName) {
+        this.sizeName = sizeName;
     }
 
     public Integer getStatus() {

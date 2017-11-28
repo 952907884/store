@@ -1,14 +1,24 @@
 package cn.wang.store.util;
 
+import cn.wang.store.dao.impl.ExtImpl;
+import cn.wang.store.entity.Ext;
+import cn.wang.store.entity.Page;
+
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by 王 on 2017/11/28.
  */
 public class FileName {
     public static void main(String[] args) {
-        System.out.println(PicMsg.picPath("1JH4022360090"));
-    }
+        ExtImpl e = new ExtImpl();
+        Page<Ext> page = e.getData(1, 20);
+        List<Ext> list = page.getData();
+        for (Ext ext : list) {
+            System.out.println(ext.getMap());
+        }
+     }
 
     public static void readFileName() {
         String filePath = "C:\\Users\\王\\Desktop\\欧时力\\images";

@@ -1,5 +1,6 @@
 package cn.wang.store.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ public class Page<T> {
     private int pageNum; //当前页码
     private int totalPage; //总页数
     private int totalCount; //总行数
-    private List<T> data;   //查询的内容
+    private List<T> data = new ArrayList<>();   //查询的内容
 
     public int getCurrentPage() {
         return currentPage;
