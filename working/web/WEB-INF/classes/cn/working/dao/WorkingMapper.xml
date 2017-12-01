@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.working.dao.WorkingMapper">
+
+    <select id="getAllWorking" resultType="Working">
+      SELECT * FROM working
+    </select>
+    
+    <select id="getWorking" resultType="Working" parameterType="int">
+        SELECT * from working where id=#{id}
+    </select>
+
+    <delete id="delWorking" parameterType="Working">
+        DELETE FROM `working` WHERE id=#{id}
+    </delete>
+
+    <update id="updateWorking" parameterType="Working">
+
+        UPDATE Working
+        <set>
+            <if test="title !=null">title=#{title},</if>
+            <if test="content !=null">content=#{content},</if>
+            <if test="type!=null">`type`=#{type}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

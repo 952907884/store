@@ -1,0 +1,14 @@
+#myform{
+    text-align: center;
+}
+#myform td{
+    text-align: right;
+}
+#myform input{
+    height:30px;
+
+}
+table tr:last-child td{
+    text-align: center;
+    width: 100px;
+}

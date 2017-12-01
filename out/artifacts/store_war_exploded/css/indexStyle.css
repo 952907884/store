@@ -1,0 +1,101 @@
+*{
+    margin: 0px;
+    padding:0px;
+}
+body{
+
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+    line-height: 25px;
+    color: #555555;
+
+}
+a{
+    text-decoration: none;
+
+}
+.cl{
+    clear: both;
+}
+.header{
+    height:48px;
+    width:100%;
+    background: #999;
+}
+.header img{
+    float: left;
+    margin-right:20px;
+}
+.header h1{
+    display: inline-block;
+    float: left;
+    line-height: 48px;
+    height:48px;
+}
+.m_left{
+    width:211px;  padding:5px; float:left;
+}
+.left_n{
+    height:35px; line-height:35px;  background:url(/images/m_t.png) no-repeat 31px center; background-color:#ff4e00; color:#FFF; font-size:14px; text-indent:68px; margin-bottom:10px;
+}
+.left_m{
+     background-color:#FFF; padding-bottom:20px; margin-bottom:10px; -webkit-box-shadow:0 0 5px #e0e0e0; -moz-box-shadow:0 0 5px #e0e0e0; box-shadow:0 0 5px #e0e0e0;
+}
+.left_m_t{
+    height:35px; line-height:35px;  color:#3e3e3e; font-size:14px; text-indent:68px; margin-bottom:10px; border-bottom:1px solid #e2e2e2;
+}
+
+.t_bg1{
+    background:url(/images/m_i_1.png) no-repeat 31px center;
+}
+.t_bg2{
+    background:url(/images/m_i_2.png) no-repeat 31px center;
+}
+.t_bg3{
+    background:url(/images/m_i_3.png) no-repeat 31px center;
+}
+.t_bg4{
+    background:url(/images/m_i_4.png) no-repeat 31px center;
+}
+
+.left_m ul li{
+    height:28px; line-height:28px;  color:#3e3e3e; text-indent:68px;
+}
+.left_m ul li a{
+    color:#3e3e3e;
+}
+.left_m ul li a:hover, .left_m ul li a.now{
+    color:#ff4e00;
+}
+
+/*---------------基础档案的样式--------------------*/
+#basis{
+    position: relative;
+}
+
+.classify{
+    position: absolute;
+    top: -46px;
+    left: 212px;
+    width: 200px;
+    height: 250px;
+    background: #f9f6f699;
+    z-index: 999;
+    display: none;
+}
+
+.classify li{
+    list-style: none;
+    height:24px;
+    line-height: 24px;
+    margin: 5px 0px;
+    width:120px;
+    text-align: center;
+}
+.classify li a{
+    text-decoration: none;
+    color: #ff0000;
+
+}
