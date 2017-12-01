@@ -36,5 +36,18 @@
         <fileName>Band</fileName>
         <className>cn.wang.store.entity.Band</className>
     </file-pattern>
+    <file-pattern>
+        <fileName>Product_Color</fileName>
+        <className>cn.wang.store.entity.Product_Color</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>Product_Size</fileName>
+        <className>cn.wang.store.entity.Product_Size</className>
+    </file-pattern>
+    <file-pattern>
+        <fileName>View_Product</fileName>
+        <className>cn.wang.store.entity.View_Product</className>
+    </file-pattern>
+
 
 </urlPattern>

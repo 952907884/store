@@ -1,5 +1,7 @@
 package cn.wang.store.web.servlet;
 
+import cn.wang.store.dao.BaseDao;
+import cn.wang.store.dao.impl.ExtImpl;
 import cn.wang.store.entity.Page;
 import cn.wang.store.service.ProductService;
 import cn.wang.store.service.impl.ProductServiceImpl;
@@ -21,16 +23,24 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String property = request.getParameter("property");
         String pageNum = request.getParameter("pageNum");
+        String currentPage = request.getParameter("currentPage");
         ProductService service = new ProductServiceImpl();
-        String path = this.getServletContext().getRealPath("");
+        Page page = service.findProductPage(Integer.parseInt(pageNum),Integer.parseInt(currentPage));
+        request.getSession().setAttribute("pages", page);
+        response.sendRedirect("/test/product.jsp");
+
+       /* Class<T> clazz = null;
         try {
-            Class<T> clazz = (Class<T>) Class.forName(FileClassNameUtil.getClassName(property));
-            Page<T> page  = service.findAllProduct(property, Integer.parseInt(pageNum), clazz);
+            clazz = (Class<T>) Class.forName(FileClassNameUtil.getClassName(property));
+            String currentPage = request.getParameter("currentPage");
+            ProductService service = new ProductServiceImpl();
+            Page page = service.findAllProduct(property, Integer.valueOf(pageNum), clazz);
             request.getSession().setAttribute("pages", page);
             response.sendRedirect("/test/product.jsp");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

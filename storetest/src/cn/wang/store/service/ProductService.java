@@ -8,4 +8,6 @@ import cn.wang.store.entity.Page;
 public interface ProductService {
 
     public <T> Page findAllProduct(String property, Integer pageNum,Class<T> clazz);
+
+    public Page findProductPage( int pageNum, int currentPage);
 }

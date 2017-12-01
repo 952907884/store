@@ -69,4 +69,17 @@ public class SubClasses {
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
     }
+
+    @Override
+    public String toString() {
+        return "SubClasses{" +
+                "subClassesId='" + subClassesId + '\'' +
+                ", subClassesName='" + subClassesName + '\'' +
+                ", status=" + status +
+                ", createdBy='" + createdBy + '\'' +
+                ", createDate=" + createDate +
+                ", modifyBy='" + modifyBy + '\'' +
+                ", modifyDate=" + modifyDate +
+                '}';
+    }
 }

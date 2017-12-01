@@ -20,6 +20,29 @@
             <rtexprvalue>true</rtexprvalue><!-- 属性值可以接收el表达式 -->
         </attribute>
     </tag>
+
+    <tag>
+        <name>pageNum</name>
+        <tag-class>cn.wang.store.web.PageNumTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>page</name>
+            <required>true</required> <!-- 属性必须有 -->
+            <rtexprvalue>true</rtexprvalue><!-- 属性值可以接收el表达式 -->
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>property</name>
+        <tag-class>cn.wang.store.web.PropertyTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>pro</name>
+            <required>true</required> <!-- 属性必须有 -->
+            <rtexprvalue>true</rtexprvalue><!-- 属性值可以接收el表达式 -->
+        </attribute>
+    </tag>
+
     <function>
         <name>pciPath</name>
         <function-class>cn.wang.store.util.PicMsg</function-class>

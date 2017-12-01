@@ -22,6 +22,7 @@ public class ExtImpl extends BaseDao {
         page.setPageNum(pageNum);
         page.setCurrentPage(currentPage);
         String sql ="SELECT p.productId,p.productName,p.unit,p.tagprice,p.costprice,c.categoryName,sc.subclassesName,b.bandName,t.themename,s.seriesname,p.year,p.quarter,p.status,p.picpath,p.createdBy,p.createdate,p.modifyby,p.modifydate FROM product p LEFT JOIN `band` b ON p.bandID =b.bandid LEFT JOIN `category` c ON c.categoryid = p.categoryid LEFT JOIN `series` s ON p.seriesid = s.seriesid LEFT JOIN `subclasses`  sc ON sc.subClassesId = p.subClassesId  LEFT JOIN `theme` t ON t.themeid = p.themeid  LIMIT "+((pageNum-1)*currentPage)+","+currentPage;
+        String sql1 = "SELECT p.productId,p.productName,p.unit,p.tagprice,p.costprice,c.categoryName,sc.subclassesName,b.bandName,t.themename,s.seriesname,p.year,p.quarter,p.status,p.picpath,p.createdBy,p.createdate,p.modifyby,p.modifydate FROM product p LEFT JOIN `band` b ON p.bandID =b.bandid LEFT JOIN `category` c ON c.categoryid = p.categoryid LEFT JOIN `series` s ON p.seriesid = s.seriesid LEFT JOIN `subclasses`  sc ON sc.subClassesId = p.subClassesId  LEFT JOIN `theme` t ON t.themeid = p.themeid ";
         try {
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();

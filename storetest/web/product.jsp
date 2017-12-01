@@ -13,25 +13,30 @@
     <title>商品列表</title>
     <style>
         div{
-                float: left;
+            float: left;
+        }
+        .cl{
+            clear: both;
         }
     </style>
 </head>
 <body>
     <c:if test="${empty sessionScope.pages}">
-        <jsp:forward page="/servlet/product?property=product&pageNum=1"/>
+        <jsp:forward page="/servlet/product?property=Product&pageNum=1&currentPage=20"/>
     </c:if>
     <c:if test="${not empty sessionScope.pages}">
-        <c:forEach items="${sessionScope.pages.data}" var="p">
+        <c:forEach items="${sessionScope.pages.data}" var="d">
             <div>
-                <img src="${myTag:pciPath(p.picpath)}">
-                    ${p.subclassesid}
+                <img src="${myTag:pciPath(d.map.picpath)}">
+                    ${d.map.subClassesName}
             </div>
         </c:forEach>
-        <c:forEach begin="1" end="${sessionScope.pages.totalPage}" varStatus="p">
-            <li><a href="${pageContext.request.contextPath}/servlet/product?property=product&pageNum=${p.index}">${p.index}</a></li>
-        </c:forEach>
-
+        <div class="cl"></div>
+        <ul>
+            <c:forEach begin="1" end="${sessionScope.pages.totalPage}" varStatus="p">
+                <li><a href="${pageContext.request.contextPath}/servlet/product?property=Product&currentPage=20&pageNum=${p.index}">${p.index}</a></li>
+            </c:forEach>
+        </ul>
     </c:if>
 
 </body>

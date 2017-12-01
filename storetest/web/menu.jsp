@@ -29,11 +29,11 @@
             <li><a href="#">商品</a></li>
             <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=Category&pageNum=1" target="main">大类</a></li>
             <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=SubClasses&pageNum=1" target="main">小类</a></li>
-            <li><a href="#">颜色</a></li>
-            <li><a href="#">尺码</a></li>
-            <li><a href="#">波段</a></li>
-            <li><a href="#">主题</a></li>
-            <li><a href="#">系列</a></li>
+            <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=Color&pageNum=1" target="main">颜色</a></li>
+            <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=Size&pageNum=1" target="main">尺码</a></li>
+            <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=Band&pageNum=1" target="main">波段</a></li>
+            <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=Theme&pageNum=1" target="main">主题</a></li>
+            <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=Series&pageNum=1" target="main">系列</a></li>
             <li><a href="#">年份</a></li>
             <li><a href="#">季节</a></li>
         </ul>

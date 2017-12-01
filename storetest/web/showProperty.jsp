@@ -13,18 +13,17 @@
     <title>商品属性</title>
 </head>
 <body>
-    <c:if test="${empty sessionScope.pages}">
+
+    <c:if test="${empty requestScope.pages}">
+        <%--<jsp:forward page="/servlet/showProperty"/>--%>
         <h2>没有属性</h2>
     </c:if>
-    <c:if test="${not empty sessionScope.pages}">
+    <c:if test="${not empty requestScope.pages}">
+        <h2>逗逼了</h2>
         <table border="1" width="960px">
-            <myTag:page property="${sessionScope.pages}"/>
+            <myTag:page property="${requestScope.pages}"/>
         </table>
-        <ul>
-            <c:forEach begin="1" end="${sessionScope.pages.totalPage}" varStatus="p">
-                <li><a href="${pageContext.request.contextPath}/servlet/showProperty?property=${property}&pageNum=${p.index}">${p.index}</a></li>
-            </c:forEach>
-        </ul>
+        <myTag:pageNum page="${requestScope.pages}"/>
     </c:if>
 </body>
 </html>

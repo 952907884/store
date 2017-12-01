@@ -9,7 +9,7 @@ import java.io.IOException;
  * 解决请求和响应的乱码问题
  * Created by 王 on 2017/11/25.
  */
-@javax.servlet.annotation.WebFilter(filterName = "EncodingFilter")
+@javax.servlet.annotation.WebFilter(filterName = "EncodingFilter", urlPatterns = "/*")
 public class EncodingFilter implements javax.servlet.Filter {
     public void destroy() {
     }
@@ -24,7 +24,7 @@ public class EncodingFilter implements javax.servlet.Filter {
             throw new ServletException("non-HTTP request or response");
         }
 
-        if ("get".equals(request.getMethod())) {
+        if ("get".equalsIgnoreCase(request.getMethod())) {
             request = new MyHttpRequest(request);
         }else {
             request.setCharacterEncoding("UTF-8");

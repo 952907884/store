@@ -2,6 +2,7 @@ package cn.wang.store.dao;
 
 
 
+import cn.wang.store.entity.Ext;
 import cn.wang.store.entity.Page;
 import cn.wang.store.util.JdbcUtil;
 
@@ -145,6 +146,8 @@ public class BaseDao {
         return temp;
     }
 
+
+
     /**
      * 根据对象向数据库插入数据
      * @param t
@@ -194,7 +197,7 @@ public class BaseDao {
         return runNonQuerySQL(sql, list.toArray());
     }
 
-    public <T>int delProperty(T t) {
+    public <T>int delete(T t) {
         Class clazz = t.getClass();
         String sql = "delete from `"+ clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1) + "`";
         Field[] fields = clazz.getDeclaredFields();
@@ -246,10 +249,44 @@ public class BaseDao {
         List<T> list = new ArrayList<T>();
         list = (List<T>) queryList(sql, clazz);
         Page page = new Page();
+        page.setPageNum(pageNum);
         page.setCurrentPage(20);
         page.setTotalCount(totalCount);
         page.setTotalPage(totalPage);
         page.setData(list);
+        return page;
+    }
+
+    public Page getExtPage(String sql, Integer pageNum, Integer currentPage) {
+        Connection conn = JdbcUtil.getConnection();
+        PreparedStatement pstmt = null ;
+        ResultSet rs = null ;
+        Page<Ext> page = new Page<>() ;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            rs.last();
+            int totalCount = rs.getRow();
+            page.setPageNum(pageNum);
+            page.setCurrentPage(currentPage);
+            page.setTotalCount(totalCount);
+            page.setTotalPage((int) Math.ceil((double)totalCount/currentPage));
+            sql  = sql+"  LIMIT "+((pageNum-1)*currentPage)+","+currentPage;
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            while (rs.next()) {
+                Ext ext = new Ext();
+                for (int i= 1 ;i <= columnCount ;i ++) {
+                    String columnName = metaData.getColumnName(i);
+                    ext.getMap().put(columnName, rs.getObject(i));
+                }
+                page.getData().add(ext);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return page;
     }
 
@@ -275,4 +312,42 @@ public class BaseDao {
         }
         return result;
     }
+
+    public <T>T select(T t){
+        Class clazz = t.getClass();
+        String sql = "select * from `"+ clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1) + "`";
+        String where = "";
+        List<Object> list = new ArrayList<>();
+        boolean flag = true;
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                String methodName = getGetter(field.getName());
+                Method method = clazz.getMethod(methodName);
+                Object obj = method.invoke(t);
+                if (obj != null || !"".equals(obj)) {
+                    if (flag) {
+                        where = "where "+field.getName()+"=?";
+                        flag = false;
+                    }else {
+                        where +=" and "+field.getName() +"=?" ;
+                    }
+                    list.add(obj);
+                }
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        if (!("".equals(where) || where == null)) {
+            sql = sql + " "+where;
+        }
+        t = (T) selectOne(sql, clazz, list.toArray());
+        return t;
+    }
+
+
 }

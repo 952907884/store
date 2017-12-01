@@ -26,7 +26,7 @@ public class ShowPropertyServlet extends HttpServlet {
             Class<T> clazz = (Class<T>) Class.forName(FileClassNameUtil.getClassName(property));
             Page<T> pages = service.showProperty(property, pageNum,clazz);
             System.out.println(pages.getData());
-            request.getSession().setAttribute("pages", pages);
+            request.setAttribute("pages", pages);
             request.setAttribute("property",property);
             request.getRequestDispatcher("/showProperty.jsp").forward(request,response);
 
