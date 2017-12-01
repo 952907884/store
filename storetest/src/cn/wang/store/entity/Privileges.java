@@ -4,10 +4,14 @@ package cn.wang.store.entity;
  * Created by 王 on 2017/11/26.
  */
 public class Privileges {
-    private Integer id;
-    private String priName;
-    private String fnpath;
-    private String description;
+    private Integer id; //权限id
+    private String priName; //权限名称
+    private String resource;    //权限访问资源
+    private String description; //权限描述
+    private String stuffix; //后缀
+    private String params;  //资源参数
+    private Integer Type;   //权限类型 0-需要权限控制 1-公共资源
+    private Integer status; //状态 0-正常使用 1-停用
 
     public Integer getId() {
         return id;
@@ -25,12 +29,12 @@ public class Privileges {
         this.priName = priName;
     }
 
-    public String getFnpath() {
-        return fnpath;
+    public String getResource() {
+        return resource;
     }
 
-    public void setFnpath(String fnpath) {
-        this.fnpath = fnpath;
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 
     public String getDescription() {
@@ -39,5 +43,37 @@ public class Privileges {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStuffix() {
+        return stuffix;
+    }
+
+    public void setStuffix(String stuffix) {
+        this.stuffix = stuffix;
+    }
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public Integer getType() {
+        return Type;
+    }
+
+    public void setType(Integer type) {
+        Type = type;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

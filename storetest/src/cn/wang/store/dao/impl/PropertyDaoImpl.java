@@ -32,7 +32,7 @@ public class PropertyDaoImpl extends BaseDao implements PropertyDao{
 
     @Override
     public <T> int modifyProperty(T t) {
-        return 0;
+        return update(t);
     }
 
     @Override

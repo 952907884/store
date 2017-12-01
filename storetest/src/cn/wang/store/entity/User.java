@@ -1,6 +1,7 @@
 package cn.wang.store.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户表
@@ -16,6 +17,15 @@ public class User {
     private Date createDate;
     private String modifyBy;
     private Date modifyDate;
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 
     public Integer getId() {
         return id;

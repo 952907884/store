@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
             BeanUtils.populate(user, request.getParameterMap());
             UserService service = new UserServiceImpl();
             user = service.login(user);
-            System.out.println(user);
+//            System.out.println(user);
             request.getSession().setAttribute("user",user);
             response.sendRedirect("/test/index.jsp");
         } catch (IllegalAccessException e) {

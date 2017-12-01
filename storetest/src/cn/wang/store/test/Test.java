@@ -2,7 +2,9 @@ package cn.wang.store.test;
 
 import cn.wang.store.entity.Person;
 import cn.wang.store.util.JavaBeanUtil;
+import cn.wang.store.util.SimpleData;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,7 +14,7 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args) {
-        Map<String, String[]> map = new HashMap<String, String[]>();
+       /* Map<String, String[]> map = new HashMap<String, String[]>();
         String[] a = {"123"};
         String[] b = {"12.12"};
         String[] c = {"2017-11-28 20:30:18"};
@@ -21,7 +23,9 @@ public class Test {
         map.put("birthday",c);
 
         Person p = JavaBeanUtil.populate(Person.class, map);
-        System.out.println(p.toString());
+        System.out.println(p.toString());*/
+
+        System.out.println(SimpleData.simpleDate(new Date()));
     }
 
     public static boolean typeof() {

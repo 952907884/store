@@ -313,6 +313,12 @@ public class BaseDao {
         return result;
     }
 
+    /**
+     * 根据对象查找
+     * @param t
+     * @param <T>
+     * @return
+     */
     public <T>T select(T t){
         Class clazz = t.getClass();
         String sql = "select * from `"+ clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1) + "`";
@@ -347,6 +353,46 @@ public class BaseDao {
         }
         t = (T) selectOne(sql, clazz, list.toArray());
         return t;
+    }
+
+    public <T> int update(T t) {
+        Class clazz = t.getClass();
+        List<Object> list = new ArrayList<>();
+        boolean flag = true;
+        String sql = "update " + clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1) +" set ";
+        String set = "";
+        String id =clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1)+"Id";
+        String where =" where ";
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            String fieldName = field.getName();
+            String methodName = getGetter(fieldName);
+            try {
+                if (fieldName.equalsIgnoreCase(id)) {
+                    Method method = clazz.getMethod(methodName);
+                    where = where + fieldName + "='" + method.invoke(t)+"'";
+                }else {
+                    Method method = clazz.getMethod(methodName);
+                    if (flag) {
+                        sql = sql + fieldName + "=? ";
+                        flag=false;
+                    } else {
+                        sql = sql +","+ fieldName + "=? ";
+                    }
+                    list.add(method.invoke(t));
+                }
+
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return runNonQuerySQL(sql+where,list.toArray());
+
     }
 
 

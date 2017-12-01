@@ -10,9 +10,15 @@ import org.apache.poi.ss.formula.functions.T;
  * Created by 王 on 2017/11/25.
  */
 public class PropertyServiceImple implements PropertyService {
+
     PropertyDao dao = new PropertyDaoImpl();
     @Override
     public <T>Page showProperty(String property, Integer pageNum,Class<T> clazz) {
         return dao.getPropertyPage(property,pageNum,clazz);
+    }
+
+    @Override
+    public <T> int modify(T t) {
+        return dao.modifyProperty(t);
     }
 }

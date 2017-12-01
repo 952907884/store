@@ -39,6 +39,9 @@
         </ul>
         <h3>系统设置</h3>
         <ul>
+            <li><a href="#">添加权限</a></li>
+            <li><a href="#">添加角色</a></li>
+            <li><a href="#">用户角色</a></li>
             <li><a href="uploadDatum.jsp" target="main">资料导入</a></li>
             <li><a href="login.jsp" target="main">登陆</a></li>
             <li><a href="logout.jsp" target="main">注销</a></li>
